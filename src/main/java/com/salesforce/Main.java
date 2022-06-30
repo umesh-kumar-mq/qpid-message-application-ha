@@ -4,26 +4,27 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import javax.jms.JMSException;
+import javax.naming.Context;
 import javax.naming.NamingException;
+import java.io.IOException;
 
 public class Main {
 
-    public static void main(String[] args) throws JMSException, NamingException {
+    public static void main(String[] args) throws JMSException, NamingException, IOException {
         ApplicationContext context = new ClassPathXmlApplicationContext("/com/salesforce/app.xml") ;
-
-//        Clint obj = (Clint) context.getBean("Clint1") ;
-//        obj.runTest() ;
 
         CreateConnection cr = new CreateConnection() ;
         cr.refreshConnection();
 
+        Context cxt = cr.getContext() ;
+
         DataSender ds = new DataSender() ;
 
-        int num = 100000 ;
-        for(int i=0 ; i<num ; i++) {
-            ds.runTest(cr.getSession());
+        int numberOfMessagesToSend = 50 ;
+        System.out.println(java.time.LocalTime.now());
+        for(int i=0 ; i<numberOfMessagesToSend ; i++) {
+            ds.runTest(cr.getSession() , cxt);
         }
-
     }
 }
 

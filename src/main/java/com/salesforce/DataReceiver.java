@@ -16,11 +16,7 @@ public class DataReceiver implements Clint
         {
             CreateConnection cr = new CreateConnection() ;
 
-//            Connection connection = cr.getConnection() ;
-//
             Context context = cr.getContext() ;
-//
-//            Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
 
             Session session = cr.getSession() ;
 
@@ -32,19 +28,6 @@ public class DataReceiver implements Clint
                 QueueMessageListener queueMessageListener = new QueueMessageListener("queue1") ;
                 messageConsumer.setMessageListener(queueMessageListener);
             }
-
-//            int no_of_messages = 10 ;
-
-//            for(int i=0 ; i<no_of_messages ; i++) {
-//                QueueMessageListener queueMessageListener = new QueueMessageListener("queue1") ;
-//                messageConsumer.setMessageListener(queueMessageListener);
-//
-//                //System.out.println(ms.getText());
-//                i-- ;
-//            }
-
-//            connection.close();
-//            context.close();
         }
         catch (Exception exp)
         {
