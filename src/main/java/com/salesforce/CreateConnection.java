@@ -34,7 +34,6 @@ public class CreateConnection {
             return sessionPool.get(messageSession) ;
         }
 
-//        for(int i=1 ; i<=3 ; i++) {
         while(true){
             try {
                 Context context = getContext();
@@ -49,16 +48,12 @@ public class CreateConnection {
                         sessionPool.add(session);
                     }
                 }
-                //Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
-                //list.add(session) ;
-
                 System.out.println(sessionPool.size());
                 System.out.println("Added to pool");
                 return sessionPool.get(messageSession);
             } catch (Exception exp) {
                 //exp.printStackTrace();
-//                System.out.println("check1");
-               // return null;
+                System.out.println("Retrying....");
             }
             currentInstance++ ;
             if(currentInstance > totalNoOfInstances){
@@ -68,10 +63,6 @@ public class CreateConnection {
     }
 
     public void refreshConnection() throws JMSException {
-        int totalSessions = noOfSession*noOfConnections ;
-        for(int i=0 ; i< sessionPool.size() ; i++) {
-            sessionPool.get(i).close();
-        }
         sessionPool.clear();
         getSession() ;
     }

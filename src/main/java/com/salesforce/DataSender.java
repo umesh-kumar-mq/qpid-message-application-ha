@@ -7,7 +7,7 @@ import javax.naming.Context;
 
 public class DataSender
 {
-    public void runTest(Session session , Context context) throws JMSException {
+    public void runTest(Session session , Context context ) throws JMSException {
 
         try
         {

@@ -20,7 +20,8 @@ public class Main {
 
         DataSender ds = new DataSender() ;
 
-        int numberOfMessagesToSend = 50 ;
+        int numberOfMessagesToSend = 100 ;
+
         System.out.println(java.time.LocalTime.now());
         for(int i=0 ; i<numberOfMessagesToSend ; i++) {
             ds.runTest(cr.getSession() , cxt);
